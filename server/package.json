@@ -16,5 +16,8 @@
     "pg": "^8.13.3",
     "pg-pool": "^3.7.1",
     "pymorfosis": "file:.."
+  },
+  "devDependencies": {
+    "node-pg-migrate": "^7.9.1"
   }
 }
