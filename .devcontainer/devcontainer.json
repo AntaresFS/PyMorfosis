@@ -1,0 +1,19 @@
+{
+    "name": "PyMorfosis",
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": "."
+    },
+    "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+    "forwardPorts": [3000, 5000, 5432],
+    "postCreateCommand": "npm install && cd client && npm install && cd ../server && npm install"
+  }
+  
