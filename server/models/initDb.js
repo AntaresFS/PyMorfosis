@@ -60,7 +60,7 @@ async function initDB() {
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         date_of_birth DATE,
-        enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        matricula_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         apoderado_id INTEGER REFERENCES Apoderado(id) ON DELETE SET NULL
       );
     `);
@@ -80,13 +80,13 @@ async function initDB() {
       );
     `);
 
-    // Tabla Enrollment (Matrícula)
+    // Tabla Matrícula
     await pool.query(`
-      CREATE TABLE IF NOT EXISTS Enrollment (
+      CREATE TABLE IF NOT EXISTS Matricula (
         id SERIAL PRIMARY KEY,
         alumno_id INTEGER REFERENCES Alumno(id) ON DELETE CASCADE,
         curso_id INTEGER REFERENCES Curso(id) ON DELETE CASCADE,
-        enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        matricula_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         UNIQUE (alumno_id, curso_id)
       );
     `);
