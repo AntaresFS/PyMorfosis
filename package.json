@@ -1,0 +1,27 @@
+{
+  "name": "pymorfosis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "cd server && npm run start",
+    "start-client": "cd client && npm start",
+    "init-db": "cd server && node models/initDb.js",
+    "setup": "npm run init-db && npm run start-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntaresFS/PyMorfosis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntaresFS/PyMorfosis/issues"
+  },
+  "homepage": "https://github.com/AntaresFS/PyMorfosis#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
