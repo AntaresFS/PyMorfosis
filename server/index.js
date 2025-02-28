@@ -9,6 +9,11 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Ruta raíz
+app.get("/", (req, res) => {
+  res.send("¡Bienvenido a PyMorfosis API!");
+});
+
 // Rutas
 app.use('/api/admins', require('./routes/admins'));
 app.use('/api/profesores', require('./routes/profesores'));
