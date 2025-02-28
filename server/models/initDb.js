@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '../.env' }); 
 const { Pool } = require('pg');
 
 // Configura la conexión a la base de datos usando las variables de entorno o valores fijos
