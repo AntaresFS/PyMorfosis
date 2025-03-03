@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "cross-env DOTENV_CONFIG_PATH=../.env npx node-pg-migrate up --migrations-dir migrations",
+    "migrate:down": "node -r dotenv/config node-pg-migrate down",
+    "migrate:create": "node -r dotenv/config node-pg-migrate create",
+    "migrate:undo": "node -r dotenv/config node-pg-migrate undo"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +22,7 @@
     "pymorfosis": "file:.."
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "node-pg-migrate": "^7.9.1"
   }
 }
