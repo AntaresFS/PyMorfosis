@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "install-all": "npm install && cd server $$ npx create-react-app .",
+    "install-all": "cd server && npm install && cd ../client npx create-react-app .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "node server/index.js",
     "init-db": "cd server && node models/initDb.js",
