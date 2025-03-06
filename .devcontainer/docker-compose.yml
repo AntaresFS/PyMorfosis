@@ -10,7 +10,6 @@ services:
     # Este comando evita que el contenedor se cierre al finalizar el proceso
     command: sleep infinity
     # Dentro del contenedor, al usar network_mode se conecta a la BD a través de localhost
-    network_mode: service:db
     depends_on:
       db:
         condition: service_healthy
