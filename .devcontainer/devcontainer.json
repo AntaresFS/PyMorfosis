@@ -3,7 +3,7 @@
 
 {
   "name": "PyMorfosis Dev Container",
-  "dockerComposeFile": ".devcontainer/Dockerfile",
+  "dockerComposeFile": "Dockerfile",
   "service": "app",
   "workspaceFolder": "/workspaces",
   "features": {
