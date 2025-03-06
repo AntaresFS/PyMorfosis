@@ -3,8 +3,9 @@
 
 {
   "name": "PyMorfosis Dev Container",
-  "dockerComposeFile": "Dockerfile",
-  "service": "app",
+  "build": {
+    "dockerfile": ".devcontainer/Dockerfile"
+  },
   "workspaceFolder": "/workspaces",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
