@@ -6,16 +6,24 @@ Aplicación web para el aprendizaje de Python mediante la plataforma adaptativa 
 
 ### 1) Instalación
 
-Si usas Github Codespaces o Gitpod este template ya viene con React, Node y la base de datos Postgress instalados. Si trabajas de forma local, asegúrate de instalar la última versión de Node.js
+Si usas Github Codespaces o Gitpod este template ya viene con React, Node y la base de datos Postgres instalados. Si trabajas de forma local, asegúrate de instalar la última versión de Node.js.
 
-Se recomienda instalar primero el backend. Asegúrate de tener Node.js y un motor de base de datos (se recomienda Postgress).
+Se recomienda instalar primero el backend. Asegúrate de tener Node.js y un motor de base de datos (se recomienda Postgres).
 
-1. Instala los paquetes de Node: `$ npm run install-all`
-2. Crea un archivo .env basado en .env.example: `$ cp .env.example .env`
-3. Instala tu motor de base de datos y crea tu base de datos. Dependiendo de tu base de datos tendrás que crear una variable de entorno DATABASE_URL con uno de los siguientes valores. Asegúrate de cambiar los valores con la información de tu base de datos:
+1. Clona el repositorio: `$ git clone https://github.com/AntaresFS/PyMorfosis.git`
+2. Navega al directorio del proyecto: `$ cd PyMorfosis`
+3. Instala todas las dependencias: `$ npm run install-all`
+4. Crea un archivo .env basado en .env.example: `$ cp .env.example .env`
+5. Instala tu motor de base de datos y crea tu base de datos. Dependiendo de tu base de datos tendrás que crear una variable de entorno DATABASE_URL con uno de los siguientes valores. Asegúrate de cambiar los valores con la información de tu base de datos:
 
 | Motor     | DATABASE_URL                                        |
 | --------- | --------------------------------------------------- |
 | SQLite    | sqlite:////test.db                                  |
 | MySQL     | mysql://username:password@localhost:port/example    |
-| Postgress | postgres://username:password@localhost:5432/example |
+| Postgres  | postgres://username:password@localhost:5432/example |
+
+6. Inicia la aplicación: `$ npm run setup`
+
+### 2) Configuración en Codespaces o Gitpod
+
+Si usas Github Codespaces o Gitpod, el entorno ya viene preconfigurado. Solo necesitas seguir los pasos 1 a 4 de la sección de instalación y luego ejecutar `$ npm run setup`.

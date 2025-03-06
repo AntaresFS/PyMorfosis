@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "install-all": "cd server && npm install && cd ../client npx create-react-app .",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "node server/index.js",
     "init-db": "cd server && node models/initDb.js",
-    "setup": "docker-compose exec app bash && npm run init-db && npm run start-server"
+    "setup": "npm run init-db && npm run start-server"
   },
   "repository": {
     "type": "git",
