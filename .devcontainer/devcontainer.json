@@ -10,7 +10,8 @@
     "ghcr.io/devcontainers/features/github-cli:1": {
       "installDirectlyFromGitHubRelease": true,
       "version": "latest"
-    }
+    },
+    "docker-in-docker": "latest"
   },
   "customizations": {
     "vscode": {

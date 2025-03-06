@@ -3,7 +3,6 @@ version: '3.8'
 services:
   app:
     build:
-      # Ajusta el contexto para que coincida con la ubicación del Dockerfile
       context: .
       dockerfile: .devcontainer/Dockerfile
     volumes:
@@ -12,6 +11,9 @@ services:
     command: sleep infinity
     # Dentro del contenedor, al usar network_mode se conecta a la BD a través de localhost
     network_mode: service:db
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
     image: postgres:13
@@ -24,6 +26,11 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+      timeout: 3s
 
 volumes:
   postgres-data:
