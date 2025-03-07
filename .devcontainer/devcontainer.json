@@ -4,7 +4,7 @@
 {
   "name": "PyMorfosis Dev Container",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "../Dockerfile"
   },
   "workspaceFolder": "/workspaces",
   "features": {
@@ -21,5 +21,7 @@
   },
   "forwardPorts": [3000, 5000, 5432],
   "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\")",
-  "postCreateCommand": "npm install && npm run setup"
+  "postCreateCommand": "npm install && npm run setup",
+  "postStartCommand": "bash scripts/codespaces.sh",
+  "runArgs": ["--volume=/var/lib/docker", "--privileged"]
 }

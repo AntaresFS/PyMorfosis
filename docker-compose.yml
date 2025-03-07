@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/workspaces:cached
     # Este comando evita que el contenedor se cierre al finalizar el proceso
-    command: sleep infinity
+    command: npm start
     # Dentro del contenedor, al usar network_mode se conecta a la BD a través de localhost
     depends_on:
       db:
