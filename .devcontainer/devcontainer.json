@@ -2,47 +2,26 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 
 {
-    "name": "Node.js and PostgreSQL",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
-    "workSpaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-    "features":{
-      "ghcr.io/devcontainers/features/github-cli:1": {
-			"installDirectlyFromGitHubRelease": true,
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/node:1": {
-			"nodeGypDependencies": true,
-			"version": "lts"
-		}
-    },
-    "build": {
-      "dockerfile": "Dockerfile",
-      "context": "."
-    },
-    "customizations": {
-    "vscode": {
-      "settings": {},
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-      ]
+  "name": "PyMorfosis Dev Container",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "workspaceFolder": "/workspaces",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "installDirectlyFromGitHubRelease": true,
+      "version": "latest"
     }
   },
-    // Features to add to the dev container. More info: https://containers.dev/features.
-	  // "features": {},
-
-
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-	  // This can be used to network with other containers or the host.
-    "forwardPorts": [3000, 5000, 5432],
-
-
-    "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\")",
-    // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "npm install && cd client && npm install && cd ../server && npm install"
-
-    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	  // "remoteUser": "root"
-  }
-  
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  },
+  "forwardPorts": [3000, 5000, 5432],
+  "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\")",
+  "postCreateCommand": "npm install && npm run setup",
+  "postStartCommand": "bash scripts/codespaces.sh",
+  "runArgs": ["--volume=/var/lib/docker", "--privileged"]
+}
