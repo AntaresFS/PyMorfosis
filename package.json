@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "install-all": "concurrently \"npm install --prefix server\" \"npm install --prefix client\"",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "node server/index.js",
+    "start-server": "cd server && node index.js",
     "init-db": "cd server && node models/initDb.js",
     "setup": "npm run init-db && npm run start-server"
   },
@@ -23,5 +23,8 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "pg": "^8.7.1"
   }
 }

@@ -10,6 +10,13 @@ const pool = new Pool({
   port: process.env.DB_PORT || 5432,
 });
 
+console.log("Esperando 5 segundos para asegurar que PostgreSQL esté listo...");
+
+setTimeout(async () => {
+  console.log("Intentando inicializar la base de datos...");
+  await initDB();
+}, 5000);
+
 async function initDB() {
   try {
     // Tabla Administrador
@@ -99,4 +106,6 @@ async function initDB() {
   }
 }
 
-initDB();
+
+
+
