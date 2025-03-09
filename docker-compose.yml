@@ -18,9 +18,9 @@ services:
     image: postgres:13
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: PyMorfosis
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
@@ -30,6 +30,13 @@ services:
       interval: 5s
       retries: 5
       timeout: 3s
+
+  server:
+    build: ./server
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
 
 volumes:
   postgres-data:
