@@ -1,15 +1,9 @@
 {
-  "name": "PyMorfosis",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
-    }
-  },
-  "postCreateCommand": "npm install && cd client && npm install && cd ../server && npm install",
-  "dockerComposeFile": ["../docker-compose.yml"],
-  "service": "db",
+  "name": "Backend Dev Container",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "backend",
   "workspaceFolder": "/workspace",
+  "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
       "settings": {

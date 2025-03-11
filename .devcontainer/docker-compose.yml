@@ -1,11 +1,11 @@
 services:
-  app:
+  backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - .:/workspaces:cached
-    command: npm start
+    ports: "3001:3001"
     depends_on:
       db:
         condition: service_healthy
@@ -13,7 +13,7 @@ services:
       - .env
 
   db:
-    image: postgres:latest
+    image: postgres:13
     restart: always
     env_file:
       - .env
