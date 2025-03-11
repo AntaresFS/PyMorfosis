@@ -1,5 +1,5 @@
 # /PyMorfosis/Dockerfile
-FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-18
+FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-20
 
 # Instala el cliente de PostgreSQL, Docker CLI y docker-compose
 RUN apt-get update && \

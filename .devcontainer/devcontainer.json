@@ -11,6 +11,9 @@
     "ghcr.io/devcontainers/features/github-cli:1": {
       "installDirectlyFromGitHubRelease": true,
       "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20.17.0"
     }
   },
   "customizations": {
@@ -23,5 +26,5 @@
   "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\")",
   "postCreateCommand": "npm install && npm run setup",
   "postStartCommand": "bash scripts/codespaces.sh",
-  "runArgs": ["--volume=/var/run/docker.sock:/var/run/docker.sock", "--privileged"]
+  "runArgs": ["--volume=/var/lib/docker", "--privileged"]
 }

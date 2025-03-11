@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 // Configura la conexión a la base de datos usando las variables de entorno o valores fijos
 const pool = new Pool({
   user: process.env.DB_USER || 'tu_usuario',
-  host: process.env.DB_HOST || '127.0.0.1', 
+  host: process.env.DB_HOST || 'db',
   database: process.env.DB_NAME || 'tu_basedatos',
   password: process.env.DB_PASSWORD || 'tu_contraseña',
   port: process.env.DB_PORT || 5432,
