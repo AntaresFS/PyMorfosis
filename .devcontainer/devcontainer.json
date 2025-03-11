@@ -4,7 +4,7 @@
 {
   "name": "PyMorfosis Dev Container",
   "build": {
-    "dockerfile": "../Dockerfile"
+    "dockerfile": "/workspaces/PyMorfosis/Dockerfile" // Asegúrate de que esta ruta sea correcta
   },
   "workspaceFolder": "/workspaces",
   "features": {

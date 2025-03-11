@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   app:
@@ -7,16 +7,16 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/workspaces:cached
-    # Este comando evita que el contenedor se cierre al finalizar el proceso
     command: npm start
-    # Dentro del contenedor, al usar network_mode se conecta a la BD a través de localhost
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    networks:
+      - pymorfosis-network
 
   db:
     image: postgres:13
-    restart: unless-stopped
+    container_name: db
+    restart: always
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -30,6 +30,8 @@ services:
       interval: 5s
       retries: 5
       timeout: 3s
+    networks:
+      - pymorfosis-network
 
   server:
     build: ./server
@@ -37,7 +39,13 @@ services:
       - db
     environment:
       DATABASE_URL: ${DATABASE_URL}
+    networks:
+      - pymorfosis-network
 
 volumes:
   postgres-data:
+
+networks:
+  pymorfosis-network:
+    driver: bridge
 
