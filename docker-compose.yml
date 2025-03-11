@@ -1,6 +1,19 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspaces:cached
+    # Este comando evita que el contenedor se cierre al finalizar el proceso
+    command: npm start
+    # Dentro del contenedor, al usar network_mode se conecta a la BD a través de localhost
+    depends_on:
+      db:
+        condition: service_healthy
+
   db:
     image: postgres:latest
     env_file:
@@ -13,6 +26,11 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 volumes:
   db-data:

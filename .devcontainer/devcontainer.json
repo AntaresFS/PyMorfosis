@@ -1,18 +1,15 @@
 {
-    "name": "PyMorfosis",
-    "dockerComposeFile": ["docker-compose.yml"],
-    "service": "db",
-    "workspaceFolder": "/workspace",
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "terminal.integrated.shell.linux": "/bin/bash",
-                "node.version": "20"
-            },
-            "extensions": [
-                "dbaeumer.vscode-eslint",
-                "esbenp.prettier-vscode"
-            ]
-        }
+  "name": "PyMorfosis",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "db",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "node.version": "20"
+      },
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
     }
+  }
 }
