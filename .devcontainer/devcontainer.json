@@ -1,5 +1,12 @@
 {
   "name": "PyMorfosis",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "postCreateCommand": "npm install -g npm@latest",
   "dockerComposeFile": ["../docker-compose.yml"],
   "service": "db",
   "workspaceFolder": "/workspace",
@@ -9,7 +16,11 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "node.version": "20"
       },
-      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
     }
   }
 }
