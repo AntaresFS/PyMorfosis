@@ -6,7 +6,7 @@
       "version": "20"
     }
   },
-  "postCreateCommand": "npm install -g npm@latest",
+  "postCreateCommand": "npm install && cd client && npm install && cd ../server && npm install",
   "dockerComposeFile": ["../docker-compose.yml"],
   "service": "db",
   "workspaceFolder": "/workspace",
