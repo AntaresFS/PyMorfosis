@@ -5,12 +5,12 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/workspaces:cached
-    # Este comando evita que el contenedor se cierre al finalizar el proceso
     command: npm start
-    # Dentro del contenedor, al usar network_mode se conecta a la BD a través de localhost
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - .env
 
   db:
     image: postgres:latest
