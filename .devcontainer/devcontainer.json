@@ -3,6 +3,16 @@
   "dockerComposeFile": ["docker-compose.yml"],
   "service": "backend",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "lts"
+		}
+	},
   "forwardPorts": [3000, 3001, 5432],
   "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\");",
   "postCreateCommand": "npm install && cd server && npm install",
