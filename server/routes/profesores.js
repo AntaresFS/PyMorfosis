@@ -50,11 +50,11 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { email, password_hash, first_name, last_name, phone, specialization } = req.body;
 
     const result = await pool.query(
-      'UPDATE profesor SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5 WHERE id = $6 RETURNING *',
-      [email, password_hash, first_name, last_name, phone, id]
+      'UPDATE profesor SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5, specialization = $6 WHERE id = $7 RETURNING *',
+      [email, password_hash, first_name, last_name, phone, specialization, id]
     );
 
     if (result.rows.length === 0) {
