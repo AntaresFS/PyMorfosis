@@ -12,9 +12,9 @@ RUN npm install
 EXPOSE 3001
 
 # Instala el cliente de PostgreSQL, Docker CLI y docker-compose
-# RUN apt-get update && \
-#    apt-get install -y postgresql-client docker.io docker-compose && \
-#    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+   apt-get install -y postgresql-client docker.io docker-compose && \
+   rm -rf /var/lib/apt/lists/*
 
 # Ejecuta el script "setup" para inicializar la base de datos y levantar el servidor
 CMD ["npm", "run", "setup"]

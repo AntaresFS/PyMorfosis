@@ -1,35 +1,43 @@
 services:
   backend:
     build:
-      context: .
+      context: ..
       dockerfile: .devcontainer/Dockerfile
+
     volumes:
-      - .:/workspaces:cached
-    ports: "3001:3001"
+      - ../..:/workspaces:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    network_mode: service:db
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - .env
+
 
   db:
-    image: postgres:13
-    restart: always
-    env_file:
-      - .env
-    environment:
-      POSTGRES_USER: ${DB_USER:-default_user}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-default_password}
-      POSTGRES_DB: ${DB_NAME:-default_db}
-    ports:
-      - "5432:5432"
+    image: postgres:latest
+    restart: unless-stopped
     volumes:
       - db-data:/var/lib/postgresql/data
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: PyMorfosis
+      POSTGRES_PASSWORD: postgres
+
+    
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 30s
       timeout: 10s
       retries: 5
 
 volumes:
-  db-data:
+  postgres-data:
