@@ -20,6 +20,7 @@ app.use('/api/profesores', require('./routes/profesores'));
 app.use('/api/alumnos', require('./routes/alumnos'));
 app.use('/api/apoderados', require('./routes/apoderados'));
 app.use('/api/cursos', require('./routes/cursos'));
+app.use("/api/matriculas", require("./routes/matriculas"));
 
 // Puerto
 const PORT = process.env.PORT || 5000;
