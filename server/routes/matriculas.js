@@ -33,10 +33,10 @@ router.get('/:id', async (req, res) => {
 // Crear una nueva matrícula
 router.post('/', async (req, res) => {
   try {
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { alumno_id, curso_id } = req.body;
     const result = await pool.query(
-      'INSERT INTO matricula (email, password_hash, first_name, last_name, phone, created_at) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING *',
-      [email, password_hash, first_name, last_name, phone]
+      'INSERT INTO matricula (alumno_id, curso_id) VALUES ($1, $2) RETURNING *',
+      [alumno_id, curso_id]
     );
 
     res.status(201).json(result.rows[0]);
@@ -50,11 +50,11 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { alumno_id, curso_id } = req.body;
 
     const result = await pool.query(
-      'UPDATE matricula SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5 WHERE id = $6 RETURNING *',
-      [email, password_hash, first_name, last_name, phone, id]
+      "UPDATE matricula SET alumno_id = $1, curso_id = $2 WHERE id = $3 RETURNING *",
+      [alumno_id, curso_id, id]
     );
 
     if (result.rows.length === 0) {
