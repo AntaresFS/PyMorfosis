@@ -67,7 +67,8 @@ async function initDB() {
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         date_of_birth DATE,
-        matricula_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        phone VARCHAR(50),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         apoderado_id INTEGER REFERENCES Apoderado(id) ON DELETE SET NULL
       );
     `);
