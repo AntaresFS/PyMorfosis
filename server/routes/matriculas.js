@@ -5,7 +5,7 @@ const pool = require('../db'); // Importar conexión a PostgreSQL
 // Obtener todas las matrículas
 router.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM matricula');
+    const result = await pool.query('SELECT * FROM Matricula');
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM matricula WHERE id = $1', [id]);
+    const result = await pool.query('SELECT * FROM Matricula WHERE id = $1', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Matrícula no encontrada' });
@@ -33,10 +33,10 @@ router.get('/:id', async (req, res) => {
 // Crear una nueva matrícula
 router.post('/', async (req, res) => {
   try {
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { alumno_id, curso_id } = req.body;
     const result = await pool.query(
-      'INSERT INTO matricula (email, password_hash, first_name, last_name, phone, created_at) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING *',
-      [email, password_hash, first_name, last_name, phone]
+      'INSERT INTO Matricula (alumno_id, curso_id, matricula_date) VALUES ($1, $2, NOW()) RETURNING *',
+      [alumno_id, curso_id]
     );
 
     res.status(201).json(result.rows[0]);
@@ -50,11 +50,11 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { alumno_id, curso_id } = req.body;
 
     const result = await pool.query(
-      'UPDATE matricula SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5 WHERE id = $6 RETURNING *',
-      [email, password_hash, first_name, last_name, phone, id]
+      'UPDATE Matricula SET alumno_id = $1, curso_id = $2 WHERE id = $3 RETURNING *',
+      [alumno_id, curso_id, id]
     );
 
     if (result.rows.length === 0) {
@@ -72,10 +72,10 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('DELETE FROM matricula WHERE id = $1 RETURNING *', [id]);
+    const result = await pool.query('DELETE FROM Matricula WHERE id = $1 RETURNING *', [id]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Matricula no encontrado' });
+      return res.status(404).json({ error: 'Matrícula no encontrada' });
     }
 
     res.json({ message: 'Matrícula eliminada correctamente' });
