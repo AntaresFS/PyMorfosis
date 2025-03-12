@@ -28,8 +28,8 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: PyMorfosis
+      POSTGRES_USER: gitpod
+      POSTGRES_DB: pymorfosis
       POSTGRES_PASSWORD: postgres
 
     
