@@ -33,10 +33,10 @@ router.get('/:id', async (req, res) => {
 // Crear un nuevo curso
 router.post('/', async (req, res) => {
   try {
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { title, description, subject, grade_level, start_date, end_date } = req.body;
     const result = await pool.query(
-      'INSERT INTO curso (email, password_hash, first_name, last_name, phone, created_at) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING *',
-      [email, password_hash, first_name, last_name, phone]
+      'INSERT INTO curso (title, description, subject, grade_level, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [title, description, subject, grade_level, start_date, end_date]
     );
 
     res.status(201).json(result.rows[0]);
@@ -50,11 +50,12 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { email, password_hash, first_name, last_name, phone } = req.body;
+    const { title, description, subject, grade_level, start_date, end_date } =
+      req.body;
 
     const result = await pool.query(
-      'UPDATE curso SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5 WHERE id = $6 RETURNING *',
-      [email, password_hash, first_name, last_name, phone, id]
+      "UPDATE curso SET title = $1, description = $2, subject = $3, grade_level = $4, start_date = $5, end_date = $6 WHERE id = $7 RETURNING *",
+      [title, description, subject, grade_level, start_date, end_date, id]
     );
 
     if (result.rows.length === 0) {
