@@ -1,5 +1,5 @@
 # /PyMorfosis/Dockerfile
-FROM mcr.microsoft.com/devcontainers/node:0-18
+FROM mcr.microsoft.com/devcontainers/javascript-node
 
 
 # Establece el directorio de trabajo
