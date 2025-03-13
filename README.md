@@ -19,11 +19,11 @@ Se recomienda instalar primero el backend. Asegúrate de tener Node.js y un moto
 | Motor     | DATABASE_URL                                        |
 | --------- | --------------------------------------------------- |
 | SQLite    | sqlite:////test.db                                  |
-| MySQL     | mysql://username:password@localhost:port/example    |
-| Postgres  | postgres://username:password@localhost:5432/example |
+| MySQL     | mysql://username:password@localhost:port/db_name    |
+| Postgres  | postgres://username:password@localhost:5432/db_name |
 
 6. Inicia la aplicación: `$ npm run setup`
 
 ### 2) Configuración en Codespaces o Gitpod
 
-Si usas Github Codespaces o Gitpod, el entorno ya viene preconfigurado. Solo necesitas seguir los pasos 1 a 4 de la sección de instalación y luego ejecutar `$ npm run setup`.
+Si usas Github Codespaces o Gitpod, el entorno ya viene preconfigurado. Solo necesitas seguir los pasos 3 y 4 de la sección de instalación y luego ejecutar `$ npm run setup`.
