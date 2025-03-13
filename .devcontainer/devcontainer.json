@@ -13,7 +13,7 @@
 			"version": "lts"
 		}
 	},
-  "forwardPorts": [3000, 3001, 5432],
+  "forwardPorts": [3000, 5432],
   "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\");",
   "postCreateCommand": "npm install && cd server && npm install",
   "customizations": {
