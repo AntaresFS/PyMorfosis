@@ -25,8 +25,9 @@
     "concurrently": "^9.1.2"
   },
   "dependencies": {
+    "pg": "^8.7.1",
+    "pg-protocol": "^1.8.0",
     "docker": "^1.0.0",
-    "docker-compose": "^1.1.1",
-    "pg": "^8.7.1"
+    "docker-compose": "^1.1.1"
   }
 }

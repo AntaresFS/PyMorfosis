@@ -51,6 +51,7 @@ async function initDB() {
       CREATE TABLE IF NOT EXISTS Apoderado (
         id SERIAL PRIMARY KEY,
         email VARCHAR(255) UNIQUE NOT NULL,
+        password_hash VARCHAR(255) NOT NULL,
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         phone VARCHAR(50),
@@ -67,7 +68,8 @@ async function initDB() {
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         date_of_birth DATE,
-        matricula_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        phone VARCHAR(50),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         apoderado_id INTEGER REFERENCES Apoderado(id) ON DELETE SET NULL
       );
     `);

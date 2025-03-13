@@ -35,8 +35,8 @@ router.post('/', async (req, res) => {
   try {
     const { email, first_name, last_name, phone } = req.body;
     const result = await pool.query(
-      'INSERT INTO Apoderado (email, first_name, last_name, phone, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING *',
-      [email, first_name, last_name, phone]
+      'INSERT INTO Apoderado (email, password_hash, first_name, last_name, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [email, password_hash, first_name, last_name, phone]
     );
 
     res.status(201).json(result.rows[0]);

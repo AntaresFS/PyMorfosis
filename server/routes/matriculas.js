@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   try {
     const { alumno_id, curso_id } = req.body;
     const result = await pool.query(
-      'INSERT INTO Matricula (alumno_id, curso_id, matricula_date) VALUES ($1, $2, NOW()) RETURNING *',
+      'INSERT INTO Matricula (alumno_id, curso_id) VALUES ($1, $2) RETURNING *',
       [alumno_id, curso_id]
     );
 

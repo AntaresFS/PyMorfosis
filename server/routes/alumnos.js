@@ -33,10 +33,10 @@ router.get('/:id', async (req, res) => {
 // Crear un nuevo alumno
 router.post('/', async (req, res) => {
   try {
-    const { email, password_hash, first_name, last_name, date_of_birth, apoderado_id } = req.body;
+    const { email, password_hash, first_name, last_name, date_of_birth, phone, apoderado_id } = req.body;
     const result = await pool.query(
-      'INSERT INTO Alumno (email, password_hash, first_name, last_name, date_of_birth, matricula_date, apoderado_id) VALUES ($1, $2, $3, $4, $5, NOW(), $6) RETURNING *',
-      [email, password_hash, first_name, last_name, date_of_birth, apoderado_id]
+      "INSERT INTO Alumno (email, password_hash, first_name, last_name, date_of_birth, phone, apoderado_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [email, password_hash, first_name, last_name, date_of_birth, phone, apoderado_id]
     );
 
     res.status(201).json(result.rows[0]);
