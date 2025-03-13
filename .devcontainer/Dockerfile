@@ -1,5 +1,6 @@
 # /PyMorfosis/Dockerfile
-FROM node:14
+FROM mcr.microsoft.com/devcontainers/node:0-18
+
 
 # Establece el directorio de trabajo
 WORKDIR /workspace
