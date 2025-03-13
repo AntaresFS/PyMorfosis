@@ -1,27 +1,32 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/postgres
-
 {
-  "name": "PyMorfosis Dev Container",
-  "build": {
-    "dockerfile": "../Dockerfile"
-  },
-  "workspaceFolder": "/workspaces",
+  "name": "Backend Dev Container",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "backend",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "installDirectlyFromGitHubRelease": true,
-      "version": "latest"
-    }
-  },
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "lts"
+		}
+	},
+  "forwardPorts": [3000, 3001, 5432],
+  "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\");",
+  "postCreateCommand": "npm install && cd server && npm install",
   "customizations": {
     "vscode": {
-      "settings": {},
-      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "node.version": "20"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
     }
-  },
-  "forwardPorts": [3000, 5000, 5432],
-  "onCreateCommand": "(cp .env.example .env || echo \".env creation failed\")",
-  "postCreateCommand": "npm install && npm run setup",
-  "postStartCommand": "bash scripts/codespaces.sh",
-  "runArgs": ["--volume=/var/lib/docker", "--privileged"]
+  }
 }
