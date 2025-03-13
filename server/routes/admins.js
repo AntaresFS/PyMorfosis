@@ -5,7 +5,7 @@ const pool = require('../db'); // Importar conexión a PostgreSQL
 // Obtener todos los administradores
 router.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM administrador');
+    const result = await pool.query('SELECT * FROM Administrador');
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM administrador WHERE id = $1', [id]);
+    const result = await pool.query('SELECT * FROM Administrador WHERE id = $1', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Administrador no encontrado' });
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   try {
     const { email, password_hash, first_name, last_name, phone } = req.body;
     const result = await pool.query(
-      'INSERT INTO administrador (email, password_hash, first_name, last_name, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      'INSERT INTO Administrador (email, password_hash, first_name, last_name, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [email, password_hash, first_name, last_name, phone]
     );
 
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
     const { email, password_hash, first_name, last_name, phone } = req.body;
 
     const result = await pool.query(
-      'UPDATE administrador SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5 WHERE id = $6 RETURNING *',
+      'UPDATE Administrador SET email = $1, password_hash = $2, first_name = $3, last_name = $4, phone = $5 WHERE id = $6 RETURNING *',
       [email, password_hash, first_name, last_name, phone, id]
     );
 
@@ -72,7 +72,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('DELETE FROM administrador WHERE id = $1 RETURNING *', [id]);
+    const result = await pool.query('DELETE FROM Administrador WHERE id = $1 RETURNING *', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Administrador no encontrado' });

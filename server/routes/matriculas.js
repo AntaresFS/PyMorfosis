@@ -5,7 +5,7 @@ const pool = require('../db'); // Importar conexión a PostgreSQL
 // Obtener todas las matrículas
 router.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM matricula');
+    const result = await pool.query('SELECT * FROM Matricula');
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM matricula WHERE id = $1', [id]);
+    const result = await pool.query('SELECT * FROM Matricula WHERE id = $1', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Matrícula no encontrada' });
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   try {
     const { alumno_id, curso_id } = req.body;
     const result = await pool.query(
-      'INSERT INTO matricula (alumno_id, curso_id) VALUES ($1, $2) RETURNING *',
+      'INSERT INTO Matricula (alumno_id, curso_id) VALUES ($1, $2) RETURNING *',
       [alumno_id, curso_id]
     );
 
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
     const { alumno_id, curso_id } = req.body;
 
     const result = await pool.query(
-      "UPDATE matricula SET alumno_id = $1, curso_id = $2 WHERE id = $3 RETURNING *",
+      'UPDATE Matricula SET alumno_id = $1, curso_id = $2 WHERE id = $3 RETURNING *',
       [alumno_id, curso_id, id]
     );
 
@@ -72,10 +72,10 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('DELETE FROM matricula WHERE id = $1 RETURNING *', [id]);
+    const result = await pool.query('DELETE FROM Matricula WHERE id = $1 RETURNING *', [id]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Matricula no encontrado' });
+      return res.status(404).json({ error: 'Matrícula no encontrada' });
     }
 
     res.json({ message: 'Matrícula eliminada correctamente' });
